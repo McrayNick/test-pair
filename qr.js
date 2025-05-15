@@ -42,11 +42,10 @@ router.get('/', async (req, res) => {
                 },
                 printQRInTerminal: false,
                 logger: logger,
-                browser: ["Ubuntu", "Chrome", "20.0.04"],
+                browser: Browsers.macOS("Desktop"),
             });
    
             Um4r719.ev.on('creds.update', saveCreds);
-
             Um4r719.ev.on("connection.update", async (s) => {
                 const { connection, lastDisconnect, qr } = s;
         if (qr) await res.end(await QRCode.toBuffer(qr));
