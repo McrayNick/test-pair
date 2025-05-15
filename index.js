@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 
 // Importing the 'pair' module
+import server from './qr.js';
 import code from './pair.js';
 
 const app = express();
@@ -17,7 +18,7 @@ const PORT = process.env.PORT || 8000;
 import('events').then(events => {
     events.EventEmitter.defaultMaxListeners = 500;
 });
-
+app.use('/qr', server);
 app.use('/code', code);
 app.use('/pair', async (req, res) => {
     res.sendFile(path.join(__dirname, 'pair.html'));
